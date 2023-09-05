@@ -104,43 +104,37 @@ namespace PeakSatParameters {
         EPSBatteryTemperatureSensor2 = 3057,
 
         /* COMMS Parameters */
-        COMMSUHFBandPATemperature = 2000,
-        COMMSSBandPATemperature = 2001,
-        COMMSPCBTemperature = 2002,
-        COMMSAntennaDeploymentStatus = 2003,
-        COMMSDataRateUHFTX = 2004,
-        COMMSDataRateUHFRX = 2005,
-        COMMSSymbolRateSBand = 2006,
-        COMMSCWInterval = 2007,
-        COMMSGMSKBeaconInterval = 2008,
-        COMMSUHFBandTXPower = 2009,
-        COMMSSBandTXPower = 2010,
-        COMMSChannelNumberUHFBand = 2011,
-        COMMSChannelNumberSBand = 2012,
-        COMMSLNAGain = 2013,
-        COMMSPAGainUHFBand = 2014,
-        COMMSPAGainSBand = 2015,
-        COMMSVGAGain = 2016,
-        COMMSRSSI = 2017,
-        COMMSUHFBandTXOnOff = 2018,
-        COMMSUHFBandRXOnOff = 2019,
-        COMMSSBandTXOnOff = 2020,
-        COMMSPacketsRejectedCOMMS = 2021,
-        COMMSInvalidHMAC = 2022,
-        COMMSInvalidPacketStructure = 2023,
-        COMMSInvalidSpacecraftID = 2024,
-        COMMSFrameSequenceCounter = 2025,
-        COMMSPCBTemperature1 = 2026,
-        COMMSPCBTemperature2 = 2027,
-        COMMSMCUTemperature = 2028,
-        COMMSMCUInputVoltage = 2029,
-        COMMSMCUBootCounter = 2030,
-        COMMSOnBoardTime = 2031,
-        COMMSNANDCurrentlyUsedMemoryPartition = 2032,
-        COMMSLastFailedEvent = 2033,
-        COMMSMCUSystick = 2034,
-        COMMSFlashInt = 2035,
-        COMMSSRAMInt = 2036
+        COMMSUHFPATemperature = 2000,
+        COMMSPCBTemperature = 2001,
+        COMMSADMStatus = 2002,
+        COMMSUHFTXDataRate = 2003,
+        COMMSUHFRXDataRate = 2004,
+        COMMSCWInterval = 2005,
+        COMMSGMSKBeaconInterval = 2006,
+        COMMSUHFBandTXPower = 2007,
+        COMMSChannelNoUHFBand = 2008,
+        COMMSLNAGain = 2009,
+        COMMSPAGainUHFBand = 2010,
+        COMMSVGAGain = 2011,
+        COMMSRSSI = 2012,
+        COMMSUHFBandTXOn = 2013,
+        COMMSUHFBandRXOn = 2014,
+        COMMSNoOfRejectedPackets = 2015,
+        COMMSInvalidHMAC = 2016,
+        COMMSInvalidPacketStructure = 2017,
+        COMMSInvalidSpacecraftID = 2018,
+        COMMSFrameSequenceCounter = 2019,
+        COMMSPCBTemperature1 = 2020,
+        COMMSPCBTemperature2 = 2021,
+        COMMSMCUTemperature = 2022,
+        COMMSMCUInputVoltage = 2023,
+        COMMSMCUBootCount = 2024,
+        COMMSMCUTime = 2025,
+        COMMSMemoryPartition = 2026,
+        COMMSLastFailedEvent = 2027,
+        COMMSMCUSystick = 2028,
+        COMMSFLASHInt = 2029,
+        COMMSSRAMInt = 2030,
     };
 
     /******************* OBDH ENUMS *******************/
@@ -299,31 +293,25 @@ namespace PeakSatParameters {
 
     /****************** COMMS PARAMETERS *******************/
     inline Parameter<float> commsUHFBandPATemperature(0);
-    inline Parameter<float> commsSBandPATemperature(0);
     inline Parameter<float> commsPCBTemperature(0);
 
     inline Parameter<AntennaDeploymentStatus> commsAntennaDeploymentStatus(Closed); // enum
 
-    inline Parameter<SampleRateUHFTX> commsDataRateUHFTX(Rate); // enum
-    inline Parameter<uint32_t> commsDataRateUHFRX(0);
-    inline Parameter<uint32_t> commsSymbolRateSBand(0);
+    inline Parameter<SampleRateUHFTX> commsUHFTXDataRate(Rate); // enum
+    inline Parameter<uint32_t> commsUHFRXDataRate(0);
     inline Parameter<uint16_t> commsCWInterval(0);
     inline Parameter<uint16_t> commsGMSKBeaconInterval(0);
     inline Parameter<uint32_t> commsUHFBandTXPower(0);
-    inline Parameter<uint32_t> commsSBandTXPower(0);
-    inline Parameter<uint32_t> commsChannelNumberUHFBand(0);
-    inline Parameter<uint32_t> commsChannelNumberSBand(0);
+    inline Parameter<uint32_t> commsChannelNoUHFBand(0);
 
     inline Parameter<AntennaGains> commsLNAGain(Gain); // enum
     inline Parameter<AntennaGains> commsPAGainUHFBand(Gain); // enum
-    inline Parameter<AntennaGains> commsPAGainSBand(Gain); // enum
 
     inline Parameter<uint8_t> commsVGAGain(0);
     inline Parameter<float> commsRSSI(0);
 
     inline Parameter<bool> commsUHFBandTXOnOff(0);
     inline Parameter<bool> commsUHFBandRXOnOff(0);
-    inline Parameter<bool> commsSBandTXOnOff(0);
 
     inline Parameter<uint16_t> commsPacketsRejectedCOMMS(0);
     inline Parameter<uint16_t> commsInvalidHMAC(0);
