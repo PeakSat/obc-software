@@ -145,7 +145,7 @@ void CAN::Driver::send(const CAN::Frame &message) {
 
     memset(&Driver::txFifo, 0, MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
 
-    Driver::txFifo.brs = 1;
+    Driver::txFifo.brs = 0;
     Driver::txFifo.fdf = 1;
     Driver::txFifo.xtd = 0;
     Driver::txFifo.id = Driver::writeId(message.id);
@@ -154,10 +154,12 @@ void CAN::Driver::send(const CAN::Frame &message) {
     std::copy(message.data.begin(), message.data.end(), Driver::txFifo.data);
 
     if (PeakSatParameters::obcCANBUSActive.getValue() == Main) {
-        MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
+
     } else {
-        MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
+
     }
+    MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
+    MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
 }
 
 void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf, ActiveBus incomingBus) {
