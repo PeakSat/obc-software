@@ -42,48 +42,48 @@ void CAN::Driver::mcan0TxFifoCallback(uintptr_t context) {
 }
 
 void CAN::Driver::mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
-    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
-    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
-    auto appState = static_cast<AppStates>(context);
-
-    if (not(isStatusOk && appState == Receive)) {
-        return;
-    }
-
-    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-        memset(&rxFifo0, 0x0, (numberOfMessages * MCAN0_RX_FIFO0_ELEMENT_SIZE));
-        if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
-            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Single) {
-                logMessage(rxFifo0, Redundant);
-                TPProtocol::processSingleFrame(getFrame(rxFifo0));
-                continue;
-            }
-
-            canGatekeeperTask->addToIncoming(getFrame(rxFifo0));
-
-            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Final) {
-                CAN::TPProtocol::processMultipleFrames();
-            }
-        }
-    }
+//    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
+//    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
+//    auto appState = static_cast<AppStates>(context);
+//
+//    if (not(isStatusOk && appState == Receive)) {
+//        return;
+//    }
+//
+//    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+//        memset(&rxFifo0, 0x0, (numberOfMessages * MCAN0_RX_FIFO0_ELEMENT_SIZE));
+//        if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
+//            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Single) {
+//                logMessage(rxFifo0, Redundant);
+//                TPProtocol::processSingleFrame(getFrame(rxFifo0));
+//                continue;
+//            }
+//
+//            canGatekeeperTask->addToIncoming(getFrame(rxFifo0));
+//
+//            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Final) {
+//                CAN::TPProtocol::processMultipleFrames();
+//            }
+//        }
+//    }
 }
 
 void CAN::Driver::mcan0RxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
-    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
-    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
-    auto appState = static_cast<AppStates>(context);
-
-    if (not(isStatusOk && appState == Receive)) {
-        return;
-    }
-
-    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-        memset(&rxFifo1, 0x0, MCAN0_RX_FIFO0_ELEMENT_SIZE);
-        if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
-            logMessage(rxFifo1, Main);
-            CAN::Application::parseMessage(getFrame(rxFifo1));
-        }
-    }
+//    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
+//    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
+//    auto appState = static_cast<AppStates>(context);
+//
+//    if (not(isStatusOk && appState == Receive)) {
+//        return;
+//    }
+//
+//    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+//        memset(&rxFifo1, 0x0, MCAN0_RX_FIFO0_ELEMENT_SIZE);
+//        if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
+//            logMessage(rxFifo1, Main);
+//            CAN::Application::parseMessage(getFrame(rxFifo1));
+//        }
+//    }
 }
 
 void CAN::Driver::mcan1TxFifoCallback(uintptr_t context) {
@@ -97,47 +97,47 @@ void CAN::Driver::mcan1TxFifoCallback(uintptr_t context) {
 }
 
 void CAN::Driver::mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
-    uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
-    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
-    auto appState = static_cast<AppStates>(context);
-
-    if (not(isStatusOk && appState == Receive)) {
-        return;
-    }
-
-    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-        memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
-        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
-            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Single) {
-                TPProtocol::processSingleFrame(getFrame(rxFifo0));
-                continue;
-            }
-
-            canGatekeeperTask->addToIncoming(getFrame(rxFifo0));
-
-            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Final) {
-                CAN::TPProtocol::processMultipleFrames();
-            }
-        }
-    }
+//    uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
+//    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
+//    auto appState = static_cast<AppStates>(context);
+//
+//    if (not(isStatusOk && appState == Receive)) {
+//        return;
+//    }
+//
+//    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+//        memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
+//        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
+//            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Single) {
+//                TPProtocol::processSingleFrame(getFrame(rxFifo0));
+//                continue;
+//            }
+//
+//            canGatekeeperTask->addToIncoming(getFrame(rxFifo0));
+//
+//            if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Final) {
+//                CAN::TPProtocol::processMultipleFrames();
+//            }
+//        }
+//    }
 }
 
 void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
-    uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
-    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
-    auto appState = static_cast<AppStates>(context);
-
-    if (not(isStatusOk && appState == Receive)) {
-        return;
-    }
-
-    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-        memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
-        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
-            logMessage(rxFifo1, Redundant);
-            CAN::Application::parseMessage(getFrame(rxFifo1));
-        }
-    }
+//    uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
+//    bool isStatusOk = (status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE);
+//    auto appState = static_cast<AppStates>(context);
+//
+//    if (not(isStatusOk && appState == Receive)) {
+//        return;
+//    }
+//
+//    for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+//        memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
+//        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
+//            logMessage(rxFifo1, Redundant);
+//            CAN::Application::parseMessage(getFrame(rxFifo1));
+//        }
+//    }
 }
 
 void CAN::Driver::send(const CAN::Frame &message) {

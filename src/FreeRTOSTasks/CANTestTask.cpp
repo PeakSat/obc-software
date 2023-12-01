@@ -42,9 +42,9 @@ void CANTestTask::execute() {
         const String<ECSSMaxMessageSize> logString = "Never gonna give you up, never gonna let you down";
         CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, logString, false);
         vTaskDelay(pdMS_TO_TICKS(500));
-        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::COMMS, false, parameterIDs, false);
-        vTaskDelay(pdMS_TO_TICKS(500));
-        CAN::Application::sendPingMessage(CAN::NodeIDs::COMMS, false);
-        vTaskDelay(pdMS_TO_TICKS(500));
+//        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::COMMS, false, parameterIDs, false);
+//        vTaskDelay(pdMS_TO_TICKS(500));
+//        CAN::Application::sendPingMessage(CAN::NodeIDs::COMMS, false);
+//        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }

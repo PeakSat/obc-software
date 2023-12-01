@@ -15,7 +15,7 @@ void initializeTasks() {
 //    ambientTemperatureTask->createTask();
 //    mcuTemperatureTask->createTask();
 //    timeKeepingTask->createTask();
-//    uartGatekeeperTask->createTask();
+    uartGatekeeperTask->createTask();
 //    watchdogTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
